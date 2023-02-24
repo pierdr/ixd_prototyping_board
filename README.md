@@ -47,6 +47,11 @@ The custom prototyping board includes some advanced features such as a haptic co
 | A4/SDA | Free for I2C communication (SDA)         |
 | A5/SCL | Free for I2C communication (SCL)         |
 
+### Arduino compatibility
+The prototyping board is built around an ATmega 32u4 microcontroller, which is the same as the Arduino Micro. This means that the board can be programmed using the Arduino software, just like any other Arduino.
+
+To add software to an Arduino Micro, you will need to use the Arduino IDE. Connect the board to the computer using a USB cable, select the board type "Arduino Micro" and the serial port, then write your code in the IDE and click on the "Upload" button to transfer the code to the board. 
+
 ### Credits
 
 This effort would not be possible without the help of [Romy Aboudarham](https://github.com/romyaa), [Matt Visco](https://github.com/mattvisco) and [Hiroshi Mendoza](https://github.com/hiromendo). Special thanks to the [Hybrid Lab at CCA](https://github.com/HybridLabCCA).  

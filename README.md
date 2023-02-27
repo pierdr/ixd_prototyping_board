@@ -30,7 +30,7 @@ On the bottom of the board there is an explanation of the hardware components th
 1. ![](./_other/encoder_board.jpg)Install female headers into the sockets for the rotary encoder.
 2. ![](./_other/screwterminal_board.jpg)Install screw terminals at the end of the board. 
 
-###Software Setup
+### Software Setup
 
 
 To talk with the board you can use HID mode or Serial mode. 

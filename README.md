@@ -38,7 +38,7 @@ To talk with the board you can use HID mode or Serial mode.
 ##### HID
 In HID mode the board behaves like a keyboard. 
 
-```javscript
+```javascript
 function keyPressed() {
   if (keyCode === 65) {
     // "a" key

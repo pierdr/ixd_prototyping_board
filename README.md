@@ -28,6 +28,97 @@ On the bottom of the board there is an explanation of the hardware components th
 1. ![](./_other/encoder_board.jpg)Install female headers into the sockets for the rotary encoder.
 2. ![](./_other/screwterminal_board.jpg)Install screw terminals at the end of the board. 
 
+###Software Setup
+
+
+To talk with the board you can use HID mode or Serial mode. 
+
+##### HID
+In HID mode the board behaves like a keyboard. 
+
+```javscript
+function keyPressed() {
+  if (keyCode === 65) {
+    // "a" key
+    console.log("a pressed");
+  } else if (keyCode === 87) {
+    // "w" key
+    console.log("w pressed");
+  } else if (keyCode === 83) {
+    // "s" key
+    console.log("s pressed");
+  } else if (keyCode === 68) {
+    // "d" key
+    console.log("d pressed");
+  } else if (keyCode === 32) {
+    // spacebar
+    console.log("spacebar pressed");
+  } else if (keyCode === LEFT_ARROW) {
+    // left arrow
+    console.log("left arrow pressed");
+  } else if (keyCode === RIGHT_ARROW) {
+    // right arrow
+    console.log("right arrow pressed");
+  }
+}
+```
+
+##### Serial
+The Serial protocol sent from an Arduino contains information about different types of sensors. 
+This is an example of a serial message sent:
+
+`B0,0,0,0,0,0,A1,29,E12`
+
+The letter "B" is used for buttons, and there are five values that correspond to each button state. The letter "A" is used for analog sensors, which measure the on board light sensor and the custom sensor that can be connected on the board. The letter "E" is used for the encoder. 
+
+To communicate via serial you need to rely on the [p5.serialServer](https://github.com/p5-serial/p5.serialserver).
+
+
+Here is an example on how to decode the data:
+
+```javscript
+var buttonsArray = [];
+var analogSensorsArray = [];
+var encoderValue;
+
+var input = "B0,0,0,0,0,0,A0,65,E-40";
+var decoded = decodeString(input);
+``` 
+  
+  This is the decode method:
+  
+```javscript
+function decodeString(input) {
+
+
+  // Split the input string into 3 parts: B values, A values, and encoder value
+  var parts = input.split("A");
+  var secStr = parts[1].split("E");
+  var aValues = secStr[0].split(",");
+  var bValues = parts[0].substring(1).split(",");
+  
+  encoderValue = parseInt(secStr[1]);
+  
+
+  // Convert the B values into integers and store them in the buttonsArray
+  for (var i = 0; i < bValues.length; i++) {
+    if (bValues[i]!="")
+    {
+      buttonsArray[i] = parseInt(bValues[i]);
+    }
+  }
+
+  // Convert the A values into integers and store them in the analogSensorsArray
+  for (i = 0; i < aValues.length; i++) {
+    if (aValues[i]!="")
+    {
+      analogSensorsArray[i] = parseInt(aValues[i]);
+    }
+  }
+}
+```
+
+
 
 ###Advanced features
 

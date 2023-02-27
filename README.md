@@ -78,7 +78,7 @@ To communicate via serial you need to rely on the [p5.serialServer](https://gith
 
 Here is an example on how to decode the data:
 
-```javscript
+```javascript
 var buttonsArray = [];
 var analogSensorsArray = [];
 var encoderValue;
@@ -89,7 +89,7 @@ var decoded = decodeString(input);
   
   This is the decode method:
   
-```javscript
+```javascript
 function decodeString(input) {
 
 
